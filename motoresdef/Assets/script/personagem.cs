@@ -3,12 +3,16 @@ using UnityEngine;
 
 public class personagem : MonoBehaviour
 {
+   [SerializeField]
     private string nome;
+    [SerializeField]
     private int energia;
+    [SerializeField]
     private int forca;
+    [SerializeField]
     private int velocidade;
 
-    public void AtribuirNome(string Nome)
+    public void AtribuirNome(string nome)
     {
         this.nome = name;
     }
@@ -50,14 +54,14 @@ public class personagem : MonoBehaviour
         return this.velocidade;
     }
 
-
-    private void Start()
+    public string comparevelocidade(personagem outro)
     {
-        
+        if (this.velocidade > outro.Velocidade())
+            return $"{this.nome} é mais rapido que {outro.nome}.";
+        else if (this.velocidade < outro.Velocidade())
+            return $"{outro.nome} é minimo que {this.nome}.";
+        else
+            return $"{this.nome} e {outro.nome} tem a mesma velocidade";
     }
 
-    private void Update()
-    {
-        
-    }
 }
