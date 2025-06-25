@@ -1,32 +1,21 @@
-using System;
 using UnityEngine;
 
-public class personagem : MonoBehaviour
+public class Personagem : MonoBehaviour
 {
-    private string nome;
-    private int energia;
-    private int forca;
-    private int velocidade;
+    [SerializeField] private string nome;
+    [SerializeField] private int energia;
+    [SerializeField] private int forca;
+    [SerializeField] private float velocidade;
 
-    public void AtribuirNome(string Nome)
+    // Setters
+    public void AtribuirNome(string nome)
     {
-        this.nome = name;
+        this.nome = nome;
     }
 
-    public string Nome()
-    {
-        return this.nome;
-    }
-
-    
     public void AtribuirEnergia(int energia)
     {
         this.energia = energia;
-    }
-
-    public int Energia()
-    {
-        return this.energia;
     }
 
     public void AtribuirForca(int forca)
@@ -34,30 +23,44 @@ public class personagem : MonoBehaviour
         this.forca = forca;
     }
 
+    public void AtribuirVelocidade(float velocidade)
+    {
+        this.velocidade = velocidade;
+    }
+
+    // Getters
+    public string Nome()
+    {
+        return this.nome;
+    }
+
+    public int Energia()
+    {
+        return this.energia;
+    }
+
     public int Forca()
     {
         return this.forca;
     }
 
-
-    public void AtribuirVelocidade(int velocidade)
-    {
-        this.velocidade = velocidade;
-    }
-
-    public int Velocidade()
+    public float Velocidade()
     {
         return this.velocidade;
     }
 
-
-    private void Start()
+    // Comparação simples entre dois personagens
+    public void CompararComOutro(Personagem outro)
     {
-        
-    }
+        Debug.Log($"{nome} VS {outro.Nome()}");
+        Debug.Log($"{nome} - Energia: {energia}, Força: {forca}, Velocidade: {velocidade}");
+        Debug.Log($"{outro.Nome()} - Energia: {outro.Energia()}, Força: {outro.Forca()}, Velocidade: {outro.Velocidade()}");
 
-    private void Update()
-    {
-        
+        if (forca > outro.Forca())
+            Debug.Log($"{nome} é mais forte que {outro.Nome()}");
+        else if (forca < outro.Forca())
+            Debug.Log($"{outro.Nome()} é mais forte que {nome}");
+        else
+            Debug.Log($"{nome} e {outro.Nome()} têm a mesma força.");
     }
 }
